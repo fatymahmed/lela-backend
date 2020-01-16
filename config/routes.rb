@@ -1,16 +1,8 @@
 Rails.application.routes.draw do
-  get 'lists/new'
-  get 'lists/create'
-  get 'lists/show'
-  get 'lists/edit'
-  get 'lists/update'
-  get 'lists/destroy'
-  get 'lists/index'
-  get 'items/create'
-  get 'items/show'
-  get 'items/update'
-  get 'items/destroy'
-  get 'items/index'
+  resources :lists do
+    resources :items
+  end
+  resources :items
   resources :sessions, only: [:create]
   resources :registrations, only: [:create]
   delete :logout, to: 'sessions#logged_out'
