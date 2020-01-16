@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'lists/new'
+  get 'lists/create'
+  get 'lists/show'
+  get 'lists/edit'
+  get 'lists/update'
+  get 'lists/destroy'
+  get 'lists/index'
   get 'items/create'
   get 'items/show'
   get 'items/update'

@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
       render json: {
         status: :fail
       }
-    end 
+    end
   end
 
   def destroy
