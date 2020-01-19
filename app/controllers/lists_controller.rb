@@ -42,11 +42,12 @@ class ListsController < ApplicationController
 
   def index
     @lists = List.all
+    render json: @lists
   end
 
   private
 
   def list_params
-    params.require(:list).permit(:description, items_attributes: %i[id name price description category _destroy])
+    params.require(:list).permit(:description, items_attributes: %i[name price description category _destroy])
   end
 end

@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController  
   
   def create
-    @item=Item.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
       items = Item.all
       render json: items, except: %i[created_at updated_at]
@@ -52,6 +52,6 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name, :price, :category)
+    params.require(:item).permit(:name, :price, :category, :description, :list_id)
   end
 end
