@@ -1,7 +1,7 @@
 class ListsController < ApplicationController
   def new
     @list = List.new
-    2.times { @list.items.build }
+    # 2.times { @list.items.build }
   end
 
   def create
@@ -18,7 +18,7 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
-    2.times { @list.items.build }
+    # 2.times { @list.items.build }
   end
 
   def update
@@ -26,7 +26,7 @@ class ListsController < ApplicationController
     if @list.update(list_params)
       render json: {
         status: :success,
-        item: item
+        list: @list
       }
     else
       render json: {
@@ -37,7 +37,10 @@ class ListsController < ApplicationController
 
   def show
     list = List.find(params[:id])
-    render json: list
+    render json: {
+      list: list,
+      items: list.items
+    }
   end
 
   def index
@@ -48,6 +51,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:description, items_attributes: %i[name price description category _destroy])
+    params.require(:list).permit(:description)
+    # params.require(:list).permit(:description, items_attributes: %i[name price description category _destroy])
   end
 end

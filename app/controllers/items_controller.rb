@@ -1,5 +1,5 @@
-class ItemsController < ApplicationController  
-  
+class ItemsController < ApplicationController
+
   def create
     @item = Item.new(item_params)
     if @item.save
@@ -51,7 +51,8 @@ class ItemsController < ApplicationController
   end
 
   private
+  
   def item_params
-    params.require(:item).permit(:name, :price, :category, :description, :list_id)
+    params.require(:item).permit(:name, :price, :category, :description)
   end
 end

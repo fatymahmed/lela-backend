@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_213647) do
+ActiveRecord::Schema.define(version: 2020_01_19_071953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collections", force: :cascade do |t|
+    t.bigint "list_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_collections_on_item_id"
+    t.index ["list_id"], name: "index_collections_on_list_id"
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -39,5 +48,7 @@ ActiveRecord::Schema.define(version: 2020_01_16_213647) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "collections", "items"
+  add_foreign_key "collections", "lists"
   add_foreign_key "items", "lists"
 end

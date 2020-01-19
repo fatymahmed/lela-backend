@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :lists, only: [:create, :show, :destroy, :update, :index] do
-    resources :items, only: [:create, :show, :destroy, :update, :index]
-  end
+  resources :collections, only: [:create, :destroy]
+  resources :lists, only: [:create, :show, :destroy, :update, :index]
   resources :items, only: [:create, :show, :destroy, :update, :index]
   resources :sessions, only: [:create]
   resources :registrations, only: [:create]
