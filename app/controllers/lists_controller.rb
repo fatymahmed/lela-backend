@@ -16,6 +16,14 @@ class ListsController < ApplicationController
     end
   end
 
+  def items_to_add
+    @list = List.find(params[:id])
+    items= Item.all - @list.items
+    render json: {
+      items: items
+    }
+  end
+
   def edit
     @list = List.find(params[:id])
     # 2.times { @list.items.build }
