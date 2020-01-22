@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   def create
     @collection = Collection.new(collection_params)
     if @collection.save
-      collections = collection.all
+      collections = Collection.all
       render json: collections, except: %i[created_at updated_at]
     else
       render json: {
@@ -12,7 +12,8 @@ class CollectionsController < ApplicationController
   end
 
   def destroy
-    collection = Collection.find(params[:id])
+    collection = Collection.find_by(list_id: params[:list_id], item_id: params[:item_id])
+    byebug
     collection.destroy
     if collection.destroyed?
       render json: {
@@ -28,6 +29,6 @@ class CollectionsController < ApplicationController
   private
 
   def collection_params
-    params.require(:collection).permit(:item, :list)
+    params.require(:collection).permit(:item_id, :list_id)
   end
 end

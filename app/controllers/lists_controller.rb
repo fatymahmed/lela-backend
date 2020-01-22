@@ -1,7 +1,6 @@
 class ListsController < ApplicationController
   def new
     @list = List.new
-    # 2.times { @list.items.build }
   end
 
   def create
@@ -26,7 +25,6 @@ class ListsController < ApplicationController
 
   def edit
     @list = List.find(params[:id])
-    # 2.times { @list.items.build }
   end
 
   def update
@@ -60,6 +58,5 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:description)
-    # params.require(:list).permit(:description, items_attributes: %i[name price description category _destroy])
   end
 end
