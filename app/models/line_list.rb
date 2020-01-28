@@ -1,0 +1,2 @@
+class LineList < ApplicationRecord
+end
