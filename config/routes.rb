@@ -11,6 +11,16 @@ Rails.application.routes.draw do
   post 'line_lists' => 'line_lists#create'
   get 'line_lists/:id' => 'line_lists#show', as: 'line_list'
   delete 'line_lists/:id' => 'line_lists#destroy'
+  post 'line_items' => 'line_items#create'
+  post 'line_lists' => 'line_lists#create'
+  get 'line_items/:id' => 'line_items#show', as: 'line_item'
+  delete 'line_items/:id' => 'line_items#destroy'
+  get 'line_lists/:id' => 'line_lists#show', as: 'line_list'
+  delete 'line_lists/:id' => 'line_lists#destroy'
+  post 'line_items/:id/add' => 'line_items#add_quantity', as: 'line_item_add'
+  post 'line_items/:id/reduce' => 'line_items#reduce_quantity', as: 'line_item_reduce'
+  post 'line_lists/:id/add' => 'line_lists#add_quantity', as: 'line_list_add'
+  post 'line_lists/:id/reduce' => 'line_lists#reduce_quantity', as: 'line_list_reduce'
   resources :orders
   resources :collections, only: [:create, :destroy]
   resources :lists, only: [:create, :show, :destroy, :update, :index]
